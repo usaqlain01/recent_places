@@ -1,0 +1,42 @@
+<?php
+
+/**
+ * Stores and displays a list of recently visited pages on the site.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ *
+ * Provides definitions for drupal's help features.
+ */
+function recent_places_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'recent_places.settings':
+      return t('These settings helps configure the max number of recently visited links to be displayed in the block');
+
+    case 'help.page.recent_places':
+      $output = '<p>' . t('Recent Places is a simple module that displays a list of links you visited on the site.') . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_cron().
+ *
+ * Prunes Data saved to state API leaving behind last 5 links visited for System's efficiency.
+ */
+function recent_places_cron() {
+  // Get the places array.
+  $places = \Drupal::state()->get('recent.places');
+
+  // Get the offset for array_slice, so we can save just last 5 items.
+  $count_minus_5 = count($places) - 5;
+
+  // Cut out everything but the last 5 visits.
+  $pruned_places = array_slice($places, $count_minus_5);
+
+  // Save the shorter places list
+  \Drupal::state()->set('recent.places', $pruned_places);
+}

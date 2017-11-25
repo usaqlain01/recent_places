@@ -1,0 +1,8 @@
+name: 'Recent Places'
+type: module
+description: 'A module to show recent places you visited on the site in a block.'
+core: 8.x
+package: Portfolio
+configure : recent_places.settings
+dependencies:
+  - block

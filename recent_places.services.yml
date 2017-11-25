@@ -1,0 +1,5 @@
+services:
+  recent_places.recentplacessubscriber:
+    class: Drupal\recent_places\RecentPlacesSubscriber
+    tags:
+      - { name: event_subscriber }

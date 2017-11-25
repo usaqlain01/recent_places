@@ -1,0 +1,6 @@
+recent_places.settings:
+  title: Recent Places
+  description: 'Configure the number of Recent Places links you wish to see.'
+  parent: user.admin_index
+  route_name: recent_places.settings
+  weight: -5

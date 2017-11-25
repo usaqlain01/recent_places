@@ -1,0 +1,7 @@
+recent_places.settings:
+  path: 'admin/config/people/recent-places-settings'
+  defaults:
+    _form: '\Drupal\recent_places\Form\RecentPlacesSettingsForm'
+    _title: 'Recent Places Settings'
+  requirements:
+    _permission: 'administer site configuration'
